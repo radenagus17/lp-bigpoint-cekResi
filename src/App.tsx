@@ -12,6 +12,8 @@ const App: FC<AppProps> = ({}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openDetail, setOpenDetail] = useState<boolean>(false);
 
+  // console.log(import.meta.env.VITE_RECAPTCHA);
+
   const handleLacak = (e: any): void => {
     e.preventDefault();
     if (!checkResi || !verified) return alert("Please insert data check");
@@ -57,7 +59,7 @@ const App: FC<AppProps> = ({}) => {
 
             {!verified && (
               <ReCaptcha
-                siteKey="6Ld83AooAAAAADCsP2jvHojeHvDFleOlJMDCQCoJ"
+                siteKey={import.meta.env.VITE_RECAPTCHA}
                 theme="light"
                 size="normal"
                 onSuccess={(captcha) => {
