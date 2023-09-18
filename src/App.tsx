@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import logo from "../public/newLogo.png";
 import { CgMoreO } from "react-icons/cg";
 import ReCaptcha from "@matt-block/react-recaptcha-v2";
