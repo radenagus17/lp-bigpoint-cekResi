@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import ReCAPTCHA, { ReCAPTCHAProps } from "react-google-recaptcha";
 import logo from "../public/newLogo.png";
 import { CgMoreO } from "react-icons/cg";
+import ReCaptcha from "@matt-block/react-recaptcha-v2";
 
 interface AppProps {}
 
@@ -28,11 +28,11 @@ const App: FC<AppProps> = ({}) => {
     setCheckResi(editResi.resi);
   };
 
-  const recaptcha: ReCAPTCHAProps = (token: string | null): void => {
-    console.log("Captcha value:", token);
+  // const recaptcha: ReCAPTCHAProps = (token: string | null): void => {
+  //   console.log("Captcha value:", token);
 
-    setVerified(true);
-  };
+  //   setVerified(true);
+  // };
 
   return (
     <main className="min-h-screen">
@@ -56,9 +56,20 @@ const App: FC<AppProps> = ({}) => {
             />
 
             {!verified && (
-              <ReCAPTCHA
-                sitekey="6Ld83AooAAAAADCsP2jvHojeHvDFleOlJMDCQCoJ"
-                onChange={recaptcha}
+              <ReCaptcha
+                siteKey="6Ld83AooAAAAADCsP2jvHojeHvDFleOlJMDCQCoJ"
+                theme="light"
+                size="normal"
+                onSuccess={(captcha) => {
+                  console.log(`Successful, result is ${captcha}`);
+                  setVerified(true);
+                }}
+                onError={() =>
+                  console.log("Something went wrong, check your conenction")
+                }
+                onExpire={() =>
+                  console.log("Verification has expired, re-verify.")
+                }
               />
             )}
             <button
